@@ -27,9 +27,9 @@ jobs:
       - name: Compute sha256 sums
         id: sha
         run: |
-          base="https://github.com/linuszz/orbit/releases/download/${{ steps.ver.outputs.tag }}"
+          base="https://github.com/linuszz/orbt/releases/download/${{ steps.ver.outputs.tag }}"
           for target in macos-aarch64 macos-x86_64 linux-x86_64; do
-            sha=$(curl -sL "${base}/orbit-${target}.tar.gz" | sha256sum | cut -d' ' -f1)
+            sha=$(curl -sL "${base}/orbt-${target}.tar.gz" | sha256sum | cut -d' ' -f1)
             echo "${target//-/_}_sha=${sha}" >> "$GITHUB_OUTPUT"
           done
 
@@ -40,7 +40,7 @@ jobs:
           SHA_MACOS_X86_64: ${{ steps.sha.outputs.macos_x86_64_sha }}
           SHA_LINUX_X86_64: ${{ steps.sha.outputs.linux_x86_64_sha }}
         run: |
-          sed -i "s/version \".*\"/version \"${VER}\"/" Formula/orbit.rb
+          sed -i "s/version \".*\"/version \"${VER}\"/" Formula/orbt.rb
           # Replace sha256 values in order: aarch64, x86_64 macOS, linux x86_64
           shas=("$SHA_MACOS_AARCH64" "$SHA_MACOS_X86_64" "$SHA_LINUX_X86_64")
           i=0
@@ -51,13 +51,13 @@ jobs:
             else
               echo "$line"
             fi
-          done < Formula/orbit.rb > Formula/orbit.rb.tmp
-          mv Formula/orbit.rb.tmp Formula/orbit.rb
+          done < Formula/orbt.rb > Formula/orbt.rb.tmp
+          mv Formula/orbt.rb.tmp Formula/orbt.rb
 
       - name: Commit and push
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add Formula/orbit.rb
-          git commit -m "chore: update orbit to v${{ steps.ver.outputs.version }}"
+          git add Formula/orbt.rb
+          git commit -m "chore: update orbt to v${{ steps.ver.outputs.version }}"
           git push
