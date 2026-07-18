@@ -1,24 +1,24 @@
 class Orbt < Formula
   desc "Universal terminal workspace — sessions, panes, and AI agents"
   homepage "https://github.com/linuszz/orbt"
-  version "0.1.7"
+  version "0.1.9"
   license "AGPL-3.0-only"
 
   on_macos do
     on_arm do
       url "https://github.com/linuszz/orbt/releases/download/v#{version}/orbt-macos-aarch64.tar.gz"
-      sha256 "940437e17105789e61eee0e620cf385b1af1f6d9a2a5f570f655f37e402b77ff"
+      sha256 "895a161b70b419a928ef18127ce5f65b7719c7bb5d91cadf7fcf4886430ac755"
     end
     on_intel do
       url "https://github.com/linuszz/orbt/releases/download/v#{version}/orbt-macos-x86_64.tar.gz"
-      sha256 "ecd3d90d0ef0d4c267d62e197a9b10aaf6bf82a525041c29ba74b871f9e7f626"
+      sha256 "75c6bd87764f90c0347f17f100ed844f2e93f8e90aeab837bb89fee2b981f1af"
     end
   end
 
   on_linux do
     on_intel do
       url "https://github.com/linuszz/orbt/releases/download/v#{version}/orbt-linux-x86_64.tar.gz"
-      sha256 "dd3fe03a709cf2a3d94f67e045295af90171ecc7c2b3057fa75bcbba7d1ab7a9"
+      sha256 "44ab18ccbc82f46963bf7189b29aa0702311e5fd9ea22b1b31758cdfc990b38d"
     end
   end
 
